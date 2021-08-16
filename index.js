@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlatList, Platform, StyleSheet, Text, TextInput, View, ViewPropTypes } from 'react-native';
+import { Platform, StyleSheet, Text, TextInput, View, ViewPropTypes } from 'react-native';
 
 export const AutocompleteInput = (props) => {
   function renderResultList(data, listProps) {
     const { style, ...flatListProps } = listProps;
 
-    return <FlatList data={data} style={[styles.list, style]} {...flatListProps} />;
+    let listSuggestionComponent = [];
+    data.forEach(function (item, index) {
+      listSuggestionComponent.push(flatListProps.renderItem({item: item, index: index}));
+    });
+
+    return <View style={[styles.list, style]}>{listSuggestionComponent}</View>;
   }
 
   function renderTextInput() {
@@ -124,7 +129,6 @@ const androidStyles = {
     ...border,
     backgroundColor: 'white',
     borderTopWidth: 0,
-    margin: 10,
     marginTop: 0,
   },
 };
