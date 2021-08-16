@@ -68,7 +68,7 @@ AutocompleteInput.propTypes = {
   /**
    * Props which can be applied to result `FlatList`.
    */
-  flatListProps: FlatList.propTypes || PropTypes.object,
+  flatListProps: PropTypes.object,
   /**
    * Set to `true` to hide the suggestion list.
    */
